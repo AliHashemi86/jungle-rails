@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   describe 'Validations' do
-
     it 'saves product to database if all fields are valid' do
       @category = Category.create(name: 'New')
       @product =
@@ -12,21 +11,15 @@ RSpec.describe Product, type: :model do
           quantity: 1,
           category: @category,
         )
-        
+
       @product.save
 
       expect(@product).to be_valid
     end
-
     it 'fails to save if product name is missing' do
       @category = Category.create(name: 'New')
       @product =
-        Product.new(
-          name: nil, 
-          price: 100, 
-          quantity: 1, 
-          category: @category
-        )
+        Product.new(name: nil, price: 100, quantity: 1, category: @category)
 
       @product.save
 
